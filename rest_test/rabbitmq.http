@@ -1,0 +1,11 @@
+### oeder
+POST 127.0.0.1:8080/order/generateOrder
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE2MjA3MzgxNTA0NDcsImV4cCI6MTYyMTM0Mjk1MH0.32QVxk0wxUcB_vLtcI1b_k7U26Mlm7Epv4Sxt_ynGfUlMLeHlBkuHrZC1eNVN2tjEQlF_FuWU2_2ICMBjhojng
+
+{
+  "couponId": 0,
+  "memberReceiveAddressId": 0,
+  "payType": 0,
+  "useIntegration": 0
+}

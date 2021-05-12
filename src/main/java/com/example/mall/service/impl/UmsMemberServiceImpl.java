@@ -15,13 +15,17 @@ import org.springframework.util.StringUtils;
 @Service
 public class UmsMemberServiceImpl implements UmsMemberService {
 
-  @Autowired
-  private RedisService redisService;
+  private final RedisService redisService;
 
   @Value("${redis.key.prefix.authCode}")
   private String REDIS_KEY_PREFIX_AUTH_CODE;
   @Value("${redis.key.expire.authCode}")
   private Long AUTH_CODE_EXPIRE_SECONDS;
+
+  @Autowired
+  public UmsMemberServiceImpl(RedisService redisService) {
+    this.redisService = redisService;
+  }
 
   @Override
   public CommonResult<String> generateAuthCode(String telephone) {

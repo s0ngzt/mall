@@ -1,0 +1,9 @@
+### import all
+POST http://localhost:8080/esProduct/importAll
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE2MjA3MzgxNTA0NDcsImV4cCI6MTYyMTM0Mjk1MH0.32QVxk0wxUcB_vLtcI1b_k7U26Mlm7Epv4Sxt_ynGfUlMLeHlBkuHrZC1eNVN2tjEQlF_FuWU2_2ICMBjhojng
+
+### import all
+GET  http://localhost:8080/esProduct/search/simple?keyword=%E5%B0%8F%E7%B1%B3&pageNum=0&pageSize=5
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJhZG1pbiIsImNyZWF0ZWQiOjE2MjA3MzgxNTA0NDcsImV4cCI6MTYyMTM0Mjk1MH0.32QVxk0wxUcB_vLtcI1b_k7U26Mlm7Epv4Sxt_ynGfUlMLeHlBkuHrZC1eNVN2tjEQlF_FuWU2_2ICMBjhojng

@@ -7,8 +7,8 @@ import com.example.mall.service.PmsBrandService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import java.util.List;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 /**
  * 品牌管理
  */
+@Slf4j
 @Api(tags = "PmsBrandController", description = "商品品牌管理")
 @Controller
 @RequestMapping("/brand")
@@ -29,12 +30,11 @@ public class PmsBrandController {
 
   private final PmsBrandService demoService;
 
-  private static final Logger LOGGER = LoggerFactory.getLogger(PmsBrandController.class);
-
   public PmsBrandController(PmsBrandService demoService) {
     this.demoService = demoService;
   }
 
+  @PreAuthorize("hasAuthority('pms:brand:read')")
   @ApiOperation("获取所有品牌列表")
   @RequestMapping(value = "listAll", method = RequestMethod.GET)
   @ResponseBody
@@ -50,10 +50,10 @@ public class PmsBrandController {
     int count = demoService.createBrand(pmsBrand);
     if (count == 1) {
       commonResult = CommonResult.success(pmsBrand);
-      LOGGER.debug("createBrand success:{}", pmsBrand);
+      log.debug("createBrand success:{}", pmsBrand);
     } else {
       commonResult = CommonResult.failed("操作失败");
-      LOGGER.debug("createBrand failed:{}", pmsBrand);
+      log.debug("createBrand failed:{}", pmsBrand);
     }
     return commonResult;
   }
@@ -67,10 +67,10 @@ public class PmsBrandController {
     int count = demoService.updateBrand(id, pmsBrandDto);
     if (count == 1) {
       commonResult = CommonResult.success(pmsBrandDto);
-      LOGGER.debug("updateBrand success:{}", pmsBrandDto);
+      log.debug("updateBrand success:{}", pmsBrandDto);
     } else {
       commonResult = CommonResult.failed("操作失败");
-      LOGGER.debug("updateBrand failed:{}", pmsBrandDto);
+      log.debug("updateBrand failed:{}", pmsBrandDto);
     }
     return commonResult;
   }
@@ -78,13 +78,13 @@ public class PmsBrandController {
   @ApiOperation("删除指定 id 的品牌")
   @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
   @ResponseBody
-  public CommonResult<String> deleteBrand(@PathVariable("id") Long id) {
+  public CommonResult<Object> deleteBrand(@PathVariable("id") Long id) {
     int count = demoService.deleteBrand(id);
     if (count == 1) {
-      LOGGER.debug("deleteBrand success :id={}", id);
+      log.debug("deleteBrand success :id={}", id);
       return CommonResult.success(null);
     } else {
-      LOGGER.debug("deleteBrand failed :id={}", id);
+      log.debug("deleteBrand failed :id={}", id);
       return CommonResult.failed("操作失败");
     }
   }
